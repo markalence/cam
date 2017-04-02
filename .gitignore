@@ -1,0 +1,66 @@
+function idk = gaussandsiedel(A,b)
+
+n = length(A);
+check = 0;
+bool = 69;
+
+for i = 1:n
+x(i) = 0;
+endfor
+
+do
+
+for i = 1:n
+for j = 1:n
+
+if j == i
+continue
+endif
+
+check = check +1;
+
+if check == 1
+c(i) = x(i);
+endif
+
+if check == 1
+x(i) =  b(i) - A(i,j)*x(j);
+endif
+
+if check ~= 1 && check ~= n-1
+x(i) = x(i) - (A(i,j)*x(j));
+endif
+
+if check == n-1
+x(i) = x(i) - x(j) * A(i,j);
+x(i) = x(i)/A(i,i);
+endif
+
+endfor
+
+check = 0;
+
+for k = 1:i
+
+if abs(x(k) - c(k))>0.00001
+bool = 0;
+endif
+
+if abs(x(k) - c(k))<0.00001
+bool = 1;
+endif
+
+endfor
+
+endfor
+
+until bool == 1
+
+
+for i = 1:n
+ans(i) =  x(i);
+endfor
+
+ans
+
+end
