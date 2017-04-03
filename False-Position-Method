@@ -1,0 +1,44 @@
+function yermum = falseposition(f,a,b)
+
+if polyval(f,a)>polyval(f,b)
+pp = a;
+pm = b;
+endif
+
+if polyval(f,a)<polyval(f,b)
+pp=b;
+pm=a;
+endif
+
+iterations = 0;
+
+do
+
+lar = polyval(f, pp);
+min = polyval(f, pm);
+
+m = (lar-min)/(pp-pm);
+c = lar-m*pp;
+
+y = [m, c];
+new = -c/m;
+
+if polyval(f, new)>0
+hold = pp;
+pp = new;
+endif
+
+if polyval(f,new)<0
+hold = pm;
+pm = new;
+endif
+pp-pm;
+
+
+iterations = iterations +1;
+until abs(pp-pm)<0.000001 || abs(hold-new)<0.000001
+
+ans = new
+iterations
+
+end
