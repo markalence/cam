@@ -3,16 +3,16 @@ function yermum = falseposition(f,a,b)
 if polyval(f,a)>polyval(f,b)
 pp = a;
 pm = b;
-endif
+end
 
 if polyval(f,a)<polyval(f,b)
 pp=b;
 pm=a;
-endif
+end
 
 iterations = 0;
 
-do
+while abs(pp-pm)>0.000001 && abs(hold-new)>0.000001
 
 lar = polyval(f, pp);
 min = polyval(f, pm);
@@ -26,17 +26,17 @@ new = -c/m;
 if polyval(f, new)>0
 hold = pp;
 pp = new;
-endif
+end
 
 if polyval(f,new)<0
 hold = pm;
 pm = new;
-endif
+end
 pp-pm;
 
 
 iterations = iterations +1;
-until abs(pp-pm)<0.000001 || abs(hold-new)<0.000001
+end
 
 ans = new
 iterations
