@@ -7,12 +7,12 @@ derh = polyder(h);
 ans = rand(1);
 anss = 1;
 
-do
+while abs(ans - anss) > 0.0001
 
 anss = ans;
 ans = ans - polyval(h, ans)/polyval(derh, ans);
 
-until abs(ans - anss) < 0.0001
+end
 
 ans
 
