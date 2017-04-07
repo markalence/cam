@@ -1,0 +1,42 @@
+function wat = inverse(A)
+
+n = length(A);
+C = [A,eye(n)];
+
+for i = 2:n
+
+C(i,:) = C(i,:) - (C(i,1)/C(1,1))*C(1,:);
+
+end
+
+for i = 3:1:n
+for j = 2:i-1
+
+C(i, :) = C(i, :) - (C(i,j)/C(j,j))*C(j, :);
+
+end
+j=2;
+end
+
+for i = n-1:-1:1
+
+C(i,:) = C(i,:) - (C(i,n)/C(n,n))*C(n,:);
+
+end
+
+for j = n-1:-1:2
+for i = j-1:-1:1
+
+C(i,:) = C(i,:) - (C(i,j)/C(j,j))*C(j,:);
+
+end
+end
+
+for i = 1:n
+C(i,:) = C(i,:)/C(i,i);
+end
+
+end
+
+wat = C(:,n+1:2*n);
+end
