@@ -76,7 +76,7 @@ for j = 1:n
 
 if j == i
 continue
-endif
+end
 
 check = check+1;
 
@@ -84,25 +84,25 @@ if check == n-1 && i ~= n
 
 y(i) = y(i)/L(i,i);
 
-endif
+end
 
 if check == n-1 && i == n
 y(i) = y(i) - L(i,j)*y(j);
 y(i) = y(i)/L(i,i);
-endif
+end
 
 if check ~= n-1 && check ~=1
 y(i) = y(i) - L(i,j)*y(j);
-endif
+end
 
 if  check == 1
 y(i) = b(i) - L(i,j) * y(j);
 end
 
 
-endfor
+end
 check = 0;
-endfor
+end
 
 x= zeros(n,1);
 check = 0;
@@ -112,33 +112,33 @@ for j = n:-1:1
 
 if i == j
 continue
-endif
+end
 
 check = check +1;
 
 if check == 1
 
 x(i) = y(i) - U(i,j)*x(j);
-endif
+end
 
 if check ~=1  && check ~= n-1
 
 x(i) = x(i) - U(i,j)*x(j);
 
-endif
+end
 
 if check == n-1 && i ~= 1
 x(i) = x(i)/U(i,i);
-endif
+end
 
 if check == n-1 && i == 1
 x(i) = x(i) - U(i,j)*x(j);
 x(i) = x(i)/U(i,i);
-endif
+end
 
-endfor
+end
 check = 0;
-endfor
+end
 
 mim = x;
 
