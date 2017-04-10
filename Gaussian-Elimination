@@ -29,7 +29,7 @@ if x == 1 && i == 1                 %if the first row ends up with 1 zero, swap 
 C([1,n],:) = C([n,1],:)
 end
 
-if x ~= i-1                   %if there are too many zeros in a row, swap that row with the row that should have that many zeros
+if x ~= i-1                   %if there are too many zeros in a row, swap that row with the row that should have that many zeros%
 C([i, x+1],:) = C([x+1, i],:);
 C(i,:) = C(i,:) - (C(i,1)/C(1,1))*C(1,:);
 end
