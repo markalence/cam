@@ -14,28 +14,31 @@ for i = 2:n
 for g = 1:n
 for h =1:n
 
-if abs(C(g,h)) < 0.0000001 && C(g,h) ~= 0   %if the value is really really small, just call it 0%
+if abs(C(g,h)) < 0.0000001 && C(g,h) ~= 0
 
-C(g,h) = 0
+C(g,h) = 0;
 end
 
 end
 end
 
+if C(2:n,1) == 0
+break
+end
 
+
+C(i,:) = C(i,:) - (C(i,1)/C(1,1))*C(1,:);
 x= sum(C(i,:)==0);
 
-if x == 1 && i == 1                 %if the first row ends up with 1 zero, swap it with the nth row%
-C([1,n],:) = C([n,1],:)
+if x == 1 && i == 1
+C([1,n],:) = C([n,1],:);
 end
 
-if x ~= i-1                   %if there are too many zeros in a row, swap that row with the row that should have that many zeros%
+if x ~= i-1
 C([i, x+1],:) = C([x+1, i],:);
 C(i,:) = C(i,:) - (C(i,1)/C(1,1))*C(1,:);
 end
 
-
-C(i,:) = C(i,:) - (C(i,1)/C(1,1))*C(1,:);
 end
 
 
@@ -64,6 +67,9 @@ d = C(j-1,n+1)/C(j-1,j-1);
 Z(j-1)=d;
 
 end
-Ans = Z;
+
+ans = Z
+
+
 
 end
