@@ -1,0 +1,61 @@
+function pivotElement = getPivot(tableau)
+
+
+[nr,nc]=size(tableau);
+tableau2 = tableau;
+l = tableau(1,1);
+tableau = tableau(1,1:nc-1);
+
+for i = 2:nc-1
+
+if tableau(1,i) <= l
+disp("y")
+l = tableau(1,i)
+pivotCol = i
+else if l == 0 && tableau(1,pivotCol) == 0
+pivotCol=1
+end
+
+end
+
+
+
+if tableau(1,pivotCol) == 0
+pivotElement = 0;
+return
+end
+
+piv = tableau2(2:nr, pivotCol);
+b = tableau2(2:nr,nc);
+
+for i = 2:nr
+vec(i-1)=piv(i-1)/b(i-1);
+end
+
+if vec(:)<0
+pivotRow=0;
+pivotElement=1;
+return
+end
+
+
+  l=max(vec);
+   for i = 1:length(vec)
+   
+   if vec(:)<0
+   pivotElement = 0
+   end
+   
+  if vec(i)<0
+  continue
+  end
+  
+  if vec(i)<l
+  l = vec(i);
+  end
+  end
+  
+  pivotRow=find(vec==l);
+  
+  pivotElement=[pivotRow,pivotCol]';
+end
